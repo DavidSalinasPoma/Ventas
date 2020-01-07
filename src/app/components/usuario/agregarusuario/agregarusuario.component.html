@@ -1,0 +1,112 @@
+<!-- Ojo -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper animated fadeIn fast bg-gradient-white">
+  <!-- Content Header (Page header) -->
+  <section class="content-header pb-0">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="display-4">Gestión del personal de la empresa</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a [routerLink]="['/components/inicio']">Inicio</a></li>
+            <li class="breadcrumb-item active">Nuevo usuario</li>
+          </ol>
+        </div>
+        <div class="col-sm-10">
+          <p class="font-weight-light mt-1 mb-0">Modulo de Administración del
+            personal de la
+            empresa; Dentro de este
+            proceso se
+            podra
+            Registrar, Editar y/o Anular
+            estados de actividad de estos en el sistema.</p>
+        </div>
+      </div>
+    </div><!-- container-fluid -->
+  </section>
+  <hr>
+  <!-- Seccion menu boton -->
+  <section class="content padinIsquierda">
+    <button class="btn btn-primary btn-sm" [routerLink]="['/components/usuario']"><i class="fa fa-list-ul"></i> Lista
+      de datos</button>
+  </section>
+  <!-- Main content -->
+  <section class="content margen">
+    <!-- Material form register -->
+    <div class="card card-ancho">
+
+      <h5 class="card-header backColor white-text py-4">
+        <strong>Formulario de Registro</strong>
+      </h5>
+
+      <!--Card content-->
+      <div class="card-body mt-3 p-4">
+
+        <!-- Form -->
+        <form action="" [formGroup]='this.userFormulario' (ngSubmit)="this.insertarUsuario()" id="vaciarFormulario">
+          <!-- Seleccionar personal -->
+          <div class="form-row">
+            <div class="col-xl-12 example-container">
+              <select class="mdb-select md-form mt-0 mb-0 listas" searchable="Buscar aqui.." id="idPersonal"
+                formControlName='idPersonal'>
+                <option *ngFor="let element of this.datosPersonal" [ngValue]="element.id_personal">
+                  {{ element.nombres }}</option>
+              </select>
+              <label class="mdb-main-label acti1"><span class="font-weight-lighter">Personal <span
+                    class="text-red">*</span>
+                </span></label>
+            </div>
+          </div>
+          <!-- Fin seleccionar personal -->
+
+          <!-- Seleccionar perfil -->
+          <div class="form-row">
+            <div class=" col-xl-12 example-container">
+              <select class="mdb-select md-form mb-2 mt-3 delegation" id="idPerfil" formControlName='idPerfil'>
+                <option value="" disabled selected>Ingrese una opción</option>
+                <option *ngFor="let element of this.listaPerfil" [ngValue]="element.id_perfil">
+                  {{ element.perfil }}</option>
+              </select>
+              <label class="mdb-main-label etiquetaPerfil acti2"><span class="font-weight-lighter">Perfil
+                  <span class="text-red">*</span>
+                </span></label>
+            </div>
+          </div>
+          <!-- Fin seleccionar Perfil -->
+
+          <!-- Nombre usuario -->
+          <mat-form-field class="form-group col-xl-12 p-0">
+            <mat-label><span class="font-weight-lighter">Usuario<span class="text-red">*</span>
+              </span></mat-label>
+            <input type="text" matInput id="nameUsuario" autocomplete="off" formControlName='nameUsuario'>
+          </mat-form-field>
+          <!-- Fin nombre usuario -->
+
+          <!-- Nombre usuario -->
+          <mat-form-field class="form-group col-xl-12 p-0">
+            <mat-label><span class="font-weight-lighter">Password<span class="text-red">*</span>
+              </span></mat-label>
+            <input type="text" matInput id="password" autocomplete="off" formControlName='password'>
+          </mat-form-field>
+          <!-- Fin nombre usuario -->
+
+          <!-- Envio de datos -->
+          <button type="button" class="btn btn-light" (click)="this.borrarFormulario()">CANCELAR</button>
+          <button type="submit" class="btn btn-pink">GUARDAR</button>
+
+        </form>
+        <!-- Form -->
+
+      </div>
+      <div class="card-footer">
+        <p class="mb-0 p-3">Los campos con (<span class="text-red">*</span>) son obligatorios</p>
+      </div>
+
+    </div>
+    <!-- Material form register -->
+  </section>
+  <!-- Fin main content -->
+</div>
+<!-- /.content-wrapper -->

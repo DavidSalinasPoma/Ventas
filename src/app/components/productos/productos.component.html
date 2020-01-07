@@ -1,0 +1,96 @@
+<!-- Ojo -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper animated fadeIn fast bg-gradient-white">
+  <!-- Content Header (Page header) -->
+  <section class="content-header pb-0">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="display-4">Administración de Productos</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a [routerLink]="['/components/inicio']">Inicio</a></li>
+            <li class="breadcrumb-item active">Productos</li>
+          </ol>
+        </div>
+        <div class="col-sm-10">
+          <p class="font-weight-light mt-1 mb-0">Modulo de Administración de productos; Dentro de este
+            proceso se
+            podra
+            Registrar, Editar y/o Anular
+            estados de actividad de estos en el sistema.</p>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <hr>
+  <!-- Seccion menu boton -->
+  <section class="content padinIsquierda">
+    <button class="btn btn-primary btn-sm" [routerLink]="['/components/productos/listaproductos']"><i
+        class="fa fa-list-ul"></i> Lista
+      de datos</button>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    <div class="card-body pt-2">
+      <div class="card card-danger">
+        <div class="card-header">
+          <h3 class="card-title">Información General</h3>
+        </div>
+
+        <form [formGroup]='this.formulario' (ngSubmit)="this.insertarProducto()" id="formularioProducto">
+          <div class="card-body">
+            <div class="form-row">
+              <!-- Nombre producto-->
+              <div class="form-group col-xl-4 example-container">
+                <mat-form-field>
+                  <mat-label><span class="font-weight-lighter">Producto<span class="text-red">*</span> </span>
+                  </mat-label>
+                  <input matInput type="text" name="producto" autocomplete="off" formControlName="producto">
+                  <mat-hint>Mostrar error</mat-hint>
+                </mat-form-field>
+              </div>
+              <!-- Cantidad -->
+              <div class="form-group col-xl-4 example-container">
+                <mat-form-field>
+                  <mat-label><span class="font-weight-lighter">Cantidad<span class="text-red">*</span> </span>
+                  </mat-label>
+                  <input matInput type="number" name="cantidad" autocomplete="off" formControlName="cantidad">
+                  <mat-hint>Mostrar error</mat-hint>
+                </mat-form-field>
+              </div>
+              <!-- Precio -->
+              <div class="form-group col-xl-4 example-container">
+                <mat-form-field>
+                  <mat-label><span class="font-weight-lighter">Precio<span class="text-red">*</span> </span></mat-label>
+                  <input matInput type="number" name="precio" autocomplete="off" formControlName="precio">
+                  <mat-hint>Mostrar error</mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- Descripcion -->
+            <div class="form-row" id="">
+              <div class="form-group col-xl-4 example-container">
+                <mat-form-field class="example-full-width">
+                  <mat-label><span class="font-weight-lighter">Descripción<span class="text-red">*</span> </span>
+                  </mat-label>
+                  <textarea matInput name="descripcion" formControlName="descripcion"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-light">CANCELAR</button>
+            <button type="submit" class="btn btn-pink">GUARDAR</button>
+          </div>
+        </form>
+
+        <div class="card-footer" id="">
+          <p>Los campos con (<span class="text-red">*</span>) son obligatorios</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Fin main content -->
+  <!-- fin content Wrapper. Contains page content -->
+</div>

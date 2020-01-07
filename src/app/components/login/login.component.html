@@ -1,0 +1,41 @@
+<!-- Content Wrapper. Contains page content -->
+
+<!-- Material form register -->
+<div class="card">
+
+  <h5 class="card-header bg-red white-text py-4 text-center">
+    <strong>Sistema de administración y control de entradas y salidas de productos</strong>
+  </h5>
+
+  <!--Card content-->
+  <div class="card-body mt-3 p-4">
+
+    <!-- Form -->
+    <form [formGroup]='this.loginFormulario' (ngSubmit)="this.altaUsuario()" id="vaciarFormulario">
+      <!-- Nombre Usuario -->
+      <div class="md-form">
+        <i class="fas fa-user prefix dark-grey-text"></i>
+        <input type="text" id="orangeForm-name" class="form-control" id="nameUser" formControlName='nameUser'>
+        <label for="orangeForm-name">Usuario</label>
+      </div>
+      <!-- Contraseña de usuario -->
+      <div class="md-form">
+        <i class="fas fa-lock prefix dark-grey-text"></i>
+        <input type="password" id="orangeForm-pass" class="form-control" id="passUser" formControlName='passUser'>
+        <label for="orangeForm-pass">Contraseña</label>
+      </div>
+      <!-- Boton enviar -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-red">Ingresar</button>
+        <hr class="mt-4">
+        <div class="inline-ul text-center d-flex justify-content-center">
+          <a class="p-2 m-2 fa-lg tw-ic"><i class="fab fa-twitter dark-grey-text"></i></a>
+          <a class="p-2 m-2 fa-lg li-ic"><i class="fab fa-linkedin-in dark-grey-text"> </i></a>
+          <a class="p-2 m-2 fa-lg ins-ic"><i class="fab fa-instagram dark-grey-text"> </i></a>
+        </div>
+      </div>
+    </form>
+    <!-- Form -->
+  </div>
+</div>
+<!-- Material form register -->

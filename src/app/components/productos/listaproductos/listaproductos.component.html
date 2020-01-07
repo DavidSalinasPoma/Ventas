@@ -1,0 +1,200 @@
+<!-- Ojo -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper animated fadeIn fast bg-gradient-white">
+  <!-- Content Header (Page header) -->
+  <section class="content-header pb-0">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="display-4">Listado de Trabajadores Registrados</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a [routerLink]="['/components/inicio']">Inicio</a></li>
+            <li class="breadcrumb-item active">Productos</li>
+            <li class="breadcrumb-item active">Tabla de Datos</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <hr>
+  <!-- Seccion menu boton -->
+  <section class="content padinIsquierda">
+    <button class="btn btn-primary btn-sm" [routerLink]="['/components/productos']"><i class="fas fa-user-plus"></i>
+      Agregar Nuevo Producto</button>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="card-body pt-2">
+      <div class="card card-danger">
+        <div class="card-header">
+          <h3 class="card-title">Tabla de Datos</h3>
+        </div>
+        <!-- Lista de datos -->
+        <div class="card-table" id="">
+          <div class="card-body table-responsive-lg" id="">
+            <!-- Buscador dataTable -->
+            <mat-form-field>
+              <mat-label><span class="font-weight-lighter">Buscar</span>
+              </mat-label>
+              <input matInput (keyup)="applyFilter($event.target.value)">
+            </mat-form-field>
+
+            <table mat-table [dataSource]="dataSource" matSort class="col-12 ">
+              s
+              <!-- IdProducto -->
+              <ng-container matColumnDef="id_producto">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="font-weight-bolder"> Nro. </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.id_producto}} </td>
+              </ng-container>
+
+              <!-- Nombre-->
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="font-weight-bolder"> Producto </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+              </ng-container>
+
+              <!-- Cantidad -->
+              <ng-container matColumnDef="cantidad">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="font-weight-bolder"> Cantidad
+                  </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+              </ng-container>
+
+              <!-- Precio -->
+              <ng-container matColumnDef="precio">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="font-weight-bolder"> Precio
+                  </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+              </ng-container>
+
+              <!-- Descripción -->
+              <ng-container matColumnDef="descripcion">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="font-weight-bolder"> Descripción
+                  </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+              </ng-container>
+
+              <!-- IdUsuario -->
+              <ng-container matColumnDef="id_usuario_u1">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="font-weight-bolder"> Usuario
+                  </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.id_usuario_u1}} </td>
+              </ng-container>
+
+              <!-- Acciones -->
+              <ng-container matColumnDef="accion">
+                <th mat-header-cell *matHeaderCellDef><span class="font-weight-bolder"> Acciones </span></th>
+                <td mat-cell *matCellDef="let element">
+                  <div class="d-xl-flex" id="">
+
+                    <button type="button" class="btn btn-block bg-gradient-success btn-xs btn-rounded" title="Editar"
+                      data-toggle="modal" data-target="#modalEditarProducto"
+                      (click)="this.seleccionarProducto(element.id_producto)"><span><i
+                          class="fas fa-edit text-white"></i></span></button>
+                    <button type="button" class="btn btn-block bg-gradient-danger btn-xs" title="Eliminar"
+                      (click)="this.deleteProducto(element.id_producto)"><span><i
+                          class="fa fa-trash text-white"></i></span></button>
+                  </div>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <!-- <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator> -->
+          </div>
+        </div>
+        <!-- fin lista de datos -->
+        <!-- <hr> -->
+        <div class="card-footer bg-white" id="">
+          <!-- <p>Los campos con (<span class="text-red">*</span>) son obligatorios</p> -->
+          <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Fin main content -->
+</div>
+<!-- /.content-wrapper -->
+<!-- Inicio Modal -->
+<div class="content">
+  <div class="modal fade" id="modalEditarProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger modal-xl" role="document">
+      <!--Content-->
+      <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header text-center">
+          <h4 class="modal-title white-text w-100 font-weight-lighter py-2">Modificar Datos</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="white-text">&times;</span>
+          </button>
+        </div>
+
+        <!--Body-->
+        <div class="modal-body">
+          <form id="editarFormularioProducto" [formGroup]='this.editForm' (ngSubmit)='this.editarProducto()'>
+            <div class="card-body">
+              <div class="form-row">
+                <!-- Nombre producto -->
+                <div class="form-group col-xl-4 example-container">
+                  <mat-form-field>
+                    <mat-label><span class="font-weight-lighter">Producto<span class="text-red">*</span> </span>
+                    </mat-label>
+                    <input matInput type="text" name="producto" autocomplete="off" formControlName="productoEditar">
+                    <mat-hint>Mostrar error</mat-hint>
+                  </mat-form-field>
+                </div>
+                <!-- Cantidad -->
+                <div class="form-group col-xl-4 example-container">
+                  <mat-form-field>
+                    <mat-label><span class="font-weight-lighter">Cantidad<span class="text-red">*</span> </span>
+                    </mat-label>
+                    <input matInput type="number" name="cantidad" autocomplete="off" formControlName="cantidadEditar">
+                    <mat-hint>Mostrar error</mat-hint>
+                  </mat-form-field>
+                </div>
+                <!-- Precio -->
+                <div class="form-group col-xl-4 example-container">
+                  <mat-form-field>
+                    <mat-label><span class="font-weight-lighter">Precio<span class="text-red">*</span> </span>
+                    </mat-label>
+                    <input matInput type="number" name="precio" autocomplete="off" formControlName="precioEditar">
+                    <mat-hint>Mostrar error</mat-hint>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!-- Descripcion -->
+              <div class="form-row" id="">
+                <div class="form-group col-xl-4 example-container">
+                  <mat-form-field class="example-full-width">
+                    <mat-label><span class="font-weight-lighter">Descripción<span class="text-red">*</span> </span>
+                    </mat-label>
+                    <textarea matInput name="descripcion" formControlName="descripcionEditar"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <button type="button" class="btn btn-light" data-dismiss="modal" aria-label="Close">CANCELAR</button>
+              <button type="submit" class="btn btn-pink" (click)="this.editarProducto()">GUARDAR</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <p>Los campos con (<span class="text-red">*</span>) son obligatorios</p>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fin Modal -->

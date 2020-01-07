@@ -1,0 +1,232 @@
+<!-- Ojo -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper animated fadeIn fast bg-gradient-white">
+  <!-- Content Header (Page header) -->
+  <section class="content-header pb-0">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="display-4">Gestion Cuentas de Usuario</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a [routerLink]="['/components/inicio']">Inicio</a></li>
+            <li class="breadcrumb-item active">Usuarios</li>
+            <li class="breadcrumb-item active">Cuentas Usuario</li>
+          </ol>
+        </div>
+        <div class="col-sm-10">
+          <p class="font-weight-light mt-1 mb-0">Modulo de Administración del
+            personal de la
+            empresa; Dentro de este
+            proceso se
+            podra
+            Registrar, Editar y/o Anular
+            estados de actividad de estos en el sistema.</p>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <hr>
+  <!-- Seccion menu boton -->
+  <section class="content padinIsquierda">
+    <button class="btn btn-primary btn-sm" title="Agregar Nuevo Usuario"
+      [routerLink]="['/components/agregarusuario']"><i class="fas fa-user-plus iconos"></i>
+      Nuevo Usuario</button>
+  </section>
+  <!-- Fin seccion Boton -->
+  <!-- Main content -->
+  <section class="content">
+    <div class="card-body pt-2">
+      <div class="card card-danger">
+        <div class="card-header">
+          <h3 class="card-title">Tabla de Datos</h3>
+        </div>
+        <!-- Lista de datos -->
+        <div class="card-table" id="">
+          <div class="card-body table-responsive-lg" id="">
+            <!-- Buscador dataTable -->
+            <mat-form-field>
+              <mat-label><span class="font-weight-lighter">Buscar</span>
+              </mat-label>
+              <input matInput (keyup)="applyFilter($event.target.value)">
+            </mat-form-field>
+
+            <table mat-table [dataSource]="dataSource" matSort class="col-12 ">
+              <!-- displayedColumns: string[] = ['id_usuario', 'nom_usuario', 'contraseña', 'nombres', 'ap_paterno', 'ap_materno', -->
+              <!-- 'perfil', 'accion']; -->
+
+              <!-- IdUsuario -->
+              <ng-container matColumnDef="id_usuario">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="font-weight-bolder"> Nro. </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.id_usuario}} </td>
+              </ng-container>
+
+              <!-- Usuario -->
+              <ng-container matColumnDef="nom_usuario">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="font-weight-bolder"> Usuario
+                  </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.nom_usuario}} </td>
+              </ng-container>
+
+              <!-- Password -->
+              <ng-container matColumnDef="contraseña">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="font-weight-bolder"> Contraseña
+                  </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.contrasenia}} </td>
+              </ng-container>
+
+              <!-- Materno -->
+              <ng-container matColumnDef="nombres">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="font-weight-bolder"> Nombres
+                  </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+              </ng-container>
+
+              <!-- Ap. Paterno -->
+              <ng-container matColumnDef="ap_paterno">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="font-weight-bolder"> Ap. Paterno
+                  </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.ap_paterno}} </td>
+              </ng-container>
+
+              <!-- Ap. Materno -->
+              <ng-container matColumnDef="ap_materno">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="font-weight-bolder"> Ap. Materno
+                  </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.ap_materno}} </td>
+              </ng-container>
+
+              <!-- Perfil -->
+              <ng-container matColumnDef="perfil">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header><span class="font-weight-bolder"> Cargo </span>
+                </th>
+                <td mat-cell *matCellDef="let element"> {{element.perfil}} </td>
+              </ng-container>
+
+              <!-- Acciones -->
+              <ng-container matColumnDef="accion">
+                <th mat-header-cell *matHeaderCellDef><span class="font-weight-bolder"> Acciones </span></th>
+                <td mat-cell *matCellDef="let element">
+                  <div class="d-xl-flex" id="">
+                    <button type="button" class="btn btn-block bg-gradient-success btn-xs btn-rounded" title="Editar"
+                      data-toggle="modal" data-target="#modalParaEditar"
+                      (click)="this.seleccionarUsuario(element.id_usuario)"><span><i
+                          class="fas fa-edit text-white"></i></span></button>
+                    <button type="button" class="btn btn-block bg-gradient-danger btn-xs" title="Eliminar"
+                      (click)="this.borrarUsuario(element.id_usuario)"><span><i
+                          class="fa fa-trash text-white"></i></span></button>
+                  </div>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <!-- <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator> -->
+          </div>
+        </div>
+        <!-- fin lista de datos -->
+        <!-- <hr> -->
+        <div class="card-footer bg-white" id="">
+          <!-- <p>Los campos con (<span class="text-red">*</span>) son obligatorios</p> -->
+          <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- Fin main content -->
+</div>
+<!-- Fin content wraper -->
+
+<!-- Inicio Modal Para editar-->
+<div class="content">
+  <div class="modal fade" id="modalParaEditar" tabindex="1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger" role="document">
+      <!--Content-->
+      <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header text-center">
+          <h4 class="modal-title white-text w-100 font-weight-lighter py-2">Modificar Datos</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" class="white-text">&times;</span>
+          </button>
+        </div>
+
+        <!--Body-->
+        <div class="modal-body">
+          <form #editarForm="ngForm" novalidate [formGroup]='this.usuarioEditar' (ngSubmit)="this.modificarUsuario()"
+            id="myFormEdit">
+            <div class="card-body">
+              <!-- Seleccionar personal -->
+              <div class="form-row" id="">
+                <div class="form-group col-xl-12 example-container">
+                  <mat-form-field>
+                    <mat-label><span class="font-weight-lighter">Personal<span class="text-red">*</span>
+                      </span></mat-label>
+                    <input matInput type="text" name="idPersonalEditar" autocomplete="off" id="idPersonalEdit"
+                      formControlName='idPersonalEdit'>
+                    <mat-hint>Mostrar error</mat-hint>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!-- Seleccionar perfil -->
+              <div class="form-row">
+                <div class=" col-xl-12 example-container">
+                  <select class="mdb-select md-form mb-2 mt-3 ingreso" id="idPerfilEdit" formControlName='idPerfilEdit'>
+                    <option value="" disabled selected>Ingrese una opción</option>
+                    <option *ngFor="let itemPerfil of this.datosPerfil" [ngValue]="itemPerfil.id_perfil">
+                      {{ itemPerfil.perfil }}
+                    </option>
+                  </select>
+                  <label class="mdb-main-label etiquetaPerfil active2"><span class="font-weight-lighter">Perfil
+                      <span class="text-red">*</span>
+                    </span></label>
+                </div>
+              </div>
+              <!-- Nombre usuario -->
+              <div class="form-row" id="">
+                <div class="form-group col-xl-12 example-container">
+                  <mat-form-field>
+                    <mat-label><span class="font-weight-lighter">Usuario<span class="text-red">*</span>
+                      </span></mat-label>
+                    <input matInput type="text" name="nameUser" autocomplete="off" id="nameUsuarioEdit"
+                      formControlName='nameUsuarioEdit'>
+                    <mat-hint>Mostrar error</mat-hint>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="form-row" id="">
+                <div class="form-group col-xl-12 example-container">
+                  <mat-form-field>
+                    <mat-label><span class="font-weight-lighter">Contraseña<span class="text-red">*</span></span>
+                    </mat-label>
+                    <input matInput type="text" name="passUser" autocomplete="off" id="passwordEdit"
+                      formControlName='passwordEdit'>
+                    <mat-hint>Mostrar error</mat-hint>
+                  </mat-form-field>
+                </div>
+              </div>
+              <button type="button" class="btn btn-light" data-dismiss="modal" aria-label="close">CANCELAR</button>
+              <button type="submit" class="btn btn-pink">GUARDAR</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <p>Los campos con (<span class="text-red">*</span>) son obligatorios</p>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fin Modal para Editar -->

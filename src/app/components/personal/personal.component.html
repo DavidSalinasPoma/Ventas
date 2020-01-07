@@ -1,0 +1,128 @@
+<!-- Ojo -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper animated fadeIn fast bg-gradient-white">
+  <!-- Content Header (Page header) -->
+  <section class="content-header pb-0">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="display-4">Gestión del personal de la empresa</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a [routerLink]="['/components/inicio']">Inicio</a></li>
+            <li class="breadcrumb-item active">Personal</li>
+          </ol>
+        </div>
+        <div class="col-sm-10">
+          <p class="font-weight-light mt-1 mb-0">Modulo de Administración del
+            personal de la
+            empresa; Dentro de este
+            proceso se
+            podra
+            Registrar, Editar y/o Anular
+            estados de actividad de estos en el sistema.</p>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <hr>
+  <!-- Seccion menu boton -->
+  <section class="content padinIsquierda">
+    <button class="btn btn-primary btn-sm" [routerLink]="['/components/personal/listpersonal']"><i
+        class="fa fa-list-ul"></i> Lista
+      de datos</button>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="card-body pt-2">
+      <div class="card card-danger">
+        <div class="card-header">
+          <h3 class="card-title">Información General</h3>
+        </div>
+
+        <form #personalForm="ngForm">
+          <div class="card-body">
+            <div class="form-row">
+              <!-- Nombres -->
+              <div class="form-group col-xl-4 example-container">
+                <mat-form-field>
+                  <mat-label><span class="font-weight-lighter">Nombres<span class="text-red">*</span> </span>
+                  </mat-label>
+                  <input matInput type="text" [(ngModel)]="modelPersonal.nombress" name="nombres" autocomplete="off">
+                  <mat-hint>Mostrar error</mat-hint>
+                </mat-form-field>
+              </div>
+              <!-- Ap. Paterno -->
+              <div class="form-group col-xl-4 example-container">
+                <mat-form-field>
+                  <mat-label><span class="font-weight-lighter">Ap. Paterno<span class="text-red">*</span> </span>
+                  </mat-label>
+                  <input matInput type="text" [(ngModel)]="modelPersonal.paterno" name="paterno" autocomplete="off">
+                  <mat-hint>Mostrar error</mat-hint>
+                </mat-form-field>
+              </div>
+              <!-- Ap. Materno -->
+              <div class="form-group col-xl-4 example-container">
+                <mat-form-field>
+                  <mat-label><span class="font-weight-lighter">Ap. Materno</span></mat-label>
+                  <input matInput type="text" [(ngModel)]="modelPersonal.materno" name="materno" autocomplete="off">
+                  <mat-hint>Mostrar error</mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- Carnet de identidad -->
+            <div class="form-row" id="">
+              <div class="form-group col-xl-4 example-container">
+                <mat-form-field>
+                  <mat-label><span class="font-weight-lighter">Carnet de Identidad<span class="text-red">*</span>
+                    </span></mat-label>
+                  <input matInput type="number" [(ngModel)]="modelPersonal.carnet" name="carnet" autocomplete="off">
+                  <mat-hint>Mostrar error</mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="form-row" id="">
+              <div class="form-group col-xl-4 example-container">
+                <mat-form-field>
+                  <mat-label><span class="font-weight-lighter">Telefono</span></mat-label>
+                  <input matInput type="number" [(ngModel)]="modelPersonal.telefono" name="telefono" autocomplete="off">
+                  <mat-hint>Mostrar error</mat-hint>
+                </mat-form-field>
+              </div>
+              <div class="form-group col-xl-4 example-container">
+                <mat-form-field>
+                  <mat-label><span class="font-weight-lighter">Email</span></mat-label>
+                  <input matInput type="email" [(ngModel)]="modelPersonal.email" name="email" autocomplete="off">
+                  <mat-hint>Mostrar error</mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="form-group mb-4">
+              <div class="form-group col-xl-12 example-container">
+                <mat-form-field>
+                  <mat-label><span class="font-weight-lighter">Dirección<span class="text-red">*</span> </span>
+                  </mat-label>
+                  <input matInput type="text" [(ngModel)]="modelPersonal.direccion" name="direccion" autocomplete="off">
+                  <mat-hint>Mostrar error</mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+            <button type="button" class="btn btn-light" (click)="this.limpiarFormulario(personalForm)">CANCELAR</button>
+            <button type="button" class="btn btn-pink" (click)="this.agregarPersonal(personalForm)">GUARDAR</button>
+          </div>
+        </form>
+
+        <div class="card-footer" id="">
+          <p>Los campos con (<span class="text-red">*</span>) son obligatorios</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- Fin main content -->
+</div>
+<!-- /.content-wrapper -->

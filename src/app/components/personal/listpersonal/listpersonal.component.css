@@ -1,0 +1,12 @@
+/* Boton para de la lista*/
+.padinIsquierda {
+  padding-left: 20px;
+}
+
+/* Botones para editar */
+.btn-xs {
+  padding: 0.2rem 0.25rem !important;
+  font-size: 0.75rem !important;
+  line-height: 1.5;
+  border-radius: 0.15rem !important;
+}

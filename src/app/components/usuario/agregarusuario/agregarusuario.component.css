@@ -1,0 +1,33 @@
+.card-ancho {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .card-ancho {
+    width: 450px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .card-ancho {
+    width: 600px;
+  }
+}
+
+.margen {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* Boton para de la lista*/
+.padinIsquierda {
+  padding-left: 20px;
+}
+
+.backColor {
+  background-color: #dc3545;
+}
+
+.etiquetaPerfil {
+  top: 1.1rem !important;
+}
