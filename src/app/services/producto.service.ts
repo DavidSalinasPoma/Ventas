@@ -28,10 +28,10 @@ export class ProductoService {
   /**
    * Inserta producto en php
    */
-  public insertarProducto(modeloProducto: ModeloProducto) {
+  public insertarProducto(modeloProductos: ModeloProducto) {
     // Lo que llega de angular para php
     // console.log(modeloPersonal);
-    return this.http.post(`${this.apiUrl}insertProducto.php`, JSON.stringify(modeloProducto));
+    return this.http.post(`${this.apiUrl}insertProducto.php`, JSON.stringify(modeloProductos));
   }
   /**
    * seleccionarProducto
